@@ -15,3 +15,24 @@ class Image(object):
         self.id = _id
         self.tags = tags
 
+class HorizontalSlide(object):
+
+    def __init__(self, image):
+        self.image = image
+
+    @property
+    def tags(self):
+        return self.image.tags
+
+class VerticalSlide(object):
+
+    def __init__(self, left_image, right_image):
+        self.left_image = left_image
+        self.right_image = right_image
+
+    @property
+    def tags(self):
+        return list(set().union(
+            self.left_image.tags,
+            self.right_image.tags
+        ))
