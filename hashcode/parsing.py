@@ -24,3 +24,14 @@ def _parse_image(_id, line):
     images = tokens[2:]
     return Image(_id, orientation, images)
 
+def compute_score(slides):
+    score = 0
+    for index, slide in enumerate(slides):
+        slide1_tags = slide.tags
+        slide2_tags = (slides[index++]).tags
+        
+        num_common_tags = list(set(slide1_tags).difference(set(slide2_tags)))
+        diff_s1_s2 = setdiff1d(slide1_tags, slide2_tags)
+        diff_s2_s1 = setdiff1d(slide2_tags, slide1_tags)
+        score += min(num_common_tags, diff_s1_s2, diff_s2_s1)
+    return score
