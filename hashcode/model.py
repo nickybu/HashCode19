@@ -18,6 +18,8 @@ class Image(object):
 class HorizontalSlide(object):
 
     def __init__(self, image):
+        if image.orientation == "vertical":
+            raise ValueError("HorizontalSlide only accepts a horizontal image")
         self.image = image
 
     @property
@@ -27,6 +29,10 @@ class HorizontalSlide(object):
 class VerticalSlide(object):
 
     def __init__(self, left_image, right_image):
+        if (
+                left_image.orientation == "horizontal"
+                or right_image.orientation == "horizontal"):
+            raise ValueError("VerticalSlide only accepts two vertical images")
         self.left_image = left_image
         self.right_image = right_image
 
