@@ -1,13 +1,16 @@
 from .model import Image
 
 def parse_dataset(filename):
-    if filename == "a_example.txt":
-        return [
-            Image("H", ["cat", "beach", "sun"]),
-            Image("V", ["selfie", "smile"]),
-            Image("V", ["garden", "selfie"]),
-            Image("H", ["garden", "cat"])
-        ]
-    else:
-        raise ValueError("I only support a_example.txt right now")
+    with open(filename) as f:
+        f.readline() # Discard the first line
+        images = [_parse_image(line) for line in f.readlines()]
+
+    return images
+
+def _parse_image(line):
+    tokens = line.split()
+
+    orientation = tokens[0]
+    images = tokens[2:]
+    return Image(orientation, images)
 
