@@ -1,0 +1,10 @@
+#!/bin/bash
+
+mkdir -p ./solutions
+
+EXAMPLES=("a" "b" "c" "d" "e")
+for d in "${EXAMPLES[@]}"
+do
+    python $1 $d > ./solutions/"$d".txt
+done
+

@@ -1,7 +1,12 @@
 from random import shuffle
+import sys
 
 from hashcode.parsing import parse_dataset, print_solution
 from hashcode.model import *
+
+dataset = 'a'
+if len(sys.argv) == 2:
+    dataset = sys.argv[1]
 
 datasets = {
     'a': 'datasets/a_example.txt',
@@ -11,7 +16,7 @@ datasets = {
     'e': 'datasets/e_shiny_selfies.txt'
 }
 
-images = parse_dataset(datasets['c'])
+images = parse_dataset(datasets[dataset])
 
 horizontal_images = filter(lambda x: x.orientation == 'horizontal', images)
 vertical_image = filter(lambda x: x.orientation == 'vertical', images)
