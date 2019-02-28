@@ -23,6 +23,10 @@ class HorizontalSlide(object):
         self.image = image
 
     @property
+    def images(self):
+        return [self.image]
+
+    @property
     def tags(self):
         return self.image.tags
 
@@ -35,6 +39,10 @@ class VerticalSlide(object):
             raise ValueError("VerticalSlide only accepts two vertical images")
         self.left_image = left_image
         self.right_image = right_image
+
+    @property
+    def images(self):
+        return [self.left_image, self.right_image]
 
     @property
     def tags(self):
