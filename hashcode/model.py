@@ -2,6 +2,7 @@
 class Image(object):
 
     def __init__(self,
+            _id,
             orientation,
             tags):
         if orientation == "H":
@@ -11,5 +12,6 @@ class Image(object):
         else:
             pass
 
+        self.id = _id
         self.tags = tags
 
