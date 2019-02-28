@@ -26,12 +26,12 @@ def _parse_image(_id, line):
 
 def compute_score(slides):
     score = 0
-    for index, slide in enumerate(slides):
+    for index, slide in enumerate(slides[:-1]):
         slide1_tags = slide.tags
-        slide2_tags = (slides[index++]).tags
+        slide2_tags = (slides[index+1]).tags
         
-        num_common_tags = list(set(slide1_tags).difference(set(slide2_tags)))
-        diff_s1_s2 = setdiff1d(slide1_tags, slide2_tags)
-        diff_s2_s1 = setdiff1d(slide2_tags, slide1_tags)
-        score += min(num_common_tags, diff_s1_s2, diff_s2_s1)
+        num_common_tags = list(set(slide1_tags).intersection(set(slide2_tags)))
+        diff_s1_s2 = list(set(slide1_tags).difference(set(slide2_tags)))
+        diff_s2_s1 = list(set(slide2_tags).difference(set(slide1_tags)))
+        score += min(len(num_common_tags), len(diff_s1_s2), len(diff_s2_s1))
     return score
