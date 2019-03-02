@@ -10,7 +10,7 @@ max_score = None
 
 def exit_handler(sig, frame):
     global max_solution
-    print_solution(solution)
+    print_solution(max_solution)
     sys.exit(0)
 
 signal.signal(signal.SIGINT, exit_handler)
